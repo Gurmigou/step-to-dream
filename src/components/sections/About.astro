@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+import aboutPhoto from "../../assets/about.jpg";
+import { aboutCredentials } from "../../data/content";
+---
+
+<section id="about" class="sec">
+  <div class="wrap layout">
+    <span class="pill label">Про авторку</span>
+    <Image
+      class="arch photo"
+      src={aboutPhoto}
+      alt="Кристина Кириленко за роботою"
+      widths={[320, 640, 900]}
+      sizes="(min-width: 1100px) 440px, 300px"
+    />
+    <div class="body">
+      <div class="name">
+        <h2 class="u fs" style="--fs:40px">Кристина</h2>
+        <div class="i fs surname" style="--fs:44px">Кириленко</div>
+      </div>
+      <ul class="credentials">
+        {aboutCredentials.map((credential) => <li>· {credential}</li>)}
+      </ul>
+      <p class="t">
+        15 років я працювала в HR міжнародної компанії і бачила кар'єри зсередини: хто росте, хто вигорає, хто роками
+        тримається за «стабільну» посаду і боїться поворухнутись. 3,5 роки жила у Гамбурзі, і добре розумію, як почати
+        нове життя з двома дітьми з чистого аркуша в чужій країні.
+      </p>
+      <p class="t">
+        Сьогодні я вдома, в рідному Києві, в колі люблячої сімʼї, бо одного разу я чесно поговорила з собою і почала
+        власну справу. Тепер я допомагаю жінкам почути себе, знайти свій напрям і пройти шлях від «так більше не хочу» до
+        першого сміливого кроку.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .label {
+    align-self: center;
+    color: var(--green);
+  }
+
+  .layout :global(.photo) {
+    width: 300px;
+    height: 380px;
+    margin-top: 8px;
+    object-position: 50% 18%;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .name {
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .name .u {
+    color: var(--green);
+  }
+
+  .surname {
+    color: var(--gold);
+    margin-top: -4px;
+  }
+
+  .credentials {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .body {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .layout {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      grid-template-areas:
+        "photo label"
+        "photo body";
+      grid-template-rows: auto 1fr;
+      column-gap: 88px;
+      align-items: start;
+    }
+
+    .label {
+      grid-area: label;
+      align-self: start;
+      justify-self: start;
+    }
+
+    .layout :global(.photo) {
+      grid-area: photo;
+      width: 440px;
+      height: 560px;
+      margin-top: 0;
+    }
+
+    .body {
+      grid-area: body;
+      max-width: 620px;
+      gap: 20px;
+    }
+
+    .name {
+      text-align: left;
+    }
+
+    .credentials {
+      font-size: 14px;
+    }
+
+    .body .t {
+      font-size: 18px;
+    }
+  }
+</style>

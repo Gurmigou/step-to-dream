@@ -1,0 +1,110 @@
+---
+import Button from "../ui/Button.astro";
+import { site } from "../../config/site";
+
+const footerLinks = [
+  { href: site.links.instagram, label: "Instagram", external: true },
+  { href: site.links.telegram, label: "Telegram", external: true },
+  { href: site.links.offer, label: "Оферта", external: false },
+  { href: site.links.privacy, label: "Політика", external: false },
+];
+---
+
+<footer id="final" class="final bg-green">
+  <div class="wrap layout">
+    <div class="cta-block">
+      <h2 class="u fs" style="--fs:32px">Ти вже знаєш,</h2>
+      <div class="i fs accent" style="--fs:42px">що так більше не хочеш</div>
+      <p class="t lead">Зробімо перший крок разом.</p>
+      <Button href={site.links.apply} label="Хочу на супровід" variant="gold" />
+    </div>
+
+    <div class="bottom">
+      <nav class="links" aria-label="Контакти та документи">
+        {
+          footerLinks.map((link) => (
+            <a href={link.href} {...(link.external && link.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}>
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+      <p class="t copy">© {site.year} {site.author} · {site.instagramHandle}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .final {
+    padding: 64px 0 32px;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .cta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .accent {
+    color: var(--sand);
+    margin-top: -8px;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .links a {
+    color: var(--cream);
+  }
+
+  .links a:hover {
+    color: var(--gold);
+  }
+
+  .copy {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+
+  @media (min-width: 1100px) {
+    .final {
+      padding: 120px 0 40px;
+    }
+
+    .cta-block {
+      max-width: 760px;
+    }
+
+    .bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+      border-top: 1px solid var(--line-on-dark);
+      margin-top: 40px;
+    }
+  }
+</style>

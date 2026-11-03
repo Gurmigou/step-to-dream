@@ -1,0 +1,132 @@
+---
+import Button from "../ui/Button.astro";
+import { site } from "../../config/site";
+---
+
+<section id="diagnostic" class="sec bg-deep">
+  <div class="wrap layout">
+    <div class="intro">
+      <span class="pill label">Безкоштовно</span>
+      <h2 class="u fs" style="--fs:40px">Де я</h2>
+      <div class="i fs accent" style="--fs:44px">загубилась?</div>
+      <p class="t">
+        Не впевнена, що готова до програми? Почни з безкоштовної діагностики. П'ять блоків тверджень і чесний підрахунок
+        — і ти побачиш, яка сфера зараз забирає найбільше сил.
+      </p>
+    </div>
+
+    <div class="pdf" aria-hidden="true">
+      <span class="pdf-kicker">Діагностика · PDF</span>
+      <div>
+        <div class="i pdf-title">Де я<br />загубилась?</div>
+        <div class="pdf-rule"></div>
+      </div>
+      <span class="pdf-foot">5 блоків тверджень<br />{site.author}</span>
+    </div>
+
+    <Button href={site.links.diagnostic} label="Отримати діагностику" variant="cream" class="cta" />
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .label {
+    color: var(--sand);
+  }
+
+  .accent {
+    color: var(--gold);
+    margin-top: -10px;
+  }
+
+  .pdf {
+    align-self: center;
+    width: 210px;
+    height: 290px;
+    margin: 10px 0;
+    background: var(--cream);
+    border-radius: 6px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transform: rotate(-3deg);
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--green);
+    border-top: 8px solid var(--green);
+  }
+
+  .pdf-kicker {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .pdf-title {
+    font-size: 40px;
+    line-height: 0.95;
+  }
+
+  .pdf-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-top: 14px;
+  }
+
+  .pdf-foot {
+    font-size: 11px;
+    color: var(--ink);
+  }
+
+  @media (min-width: 1100px) {
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "intro pdf"
+        "cta pdf";
+      column-gap: 80px;
+      row-gap: 28px;
+      align-items: start;
+    }
+
+    .intro {
+      grid-area: intro;
+    }
+
+    .intro .t {
+      font-size: 18px;
+      max-width: 520px;
+    }
+
+    .pdf {
+      grid-area: pdf;
+      align-self: center;
+      justify-self: center;
+      width: 300px;
+      height: 414px;
+      padding: 32px 26px;
+    }
+
+    .pdf-title {
+      font-size: 56px;
+    }
+
+    .layout :global(.cta) {
+      grid-area: cta;
+    }
+  }
+</style>

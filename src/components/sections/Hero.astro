@@ -1,0 +1,201 @@
+---
+import { Image } from "astro:assets";
+import Button from "../ui/Button.astro";
+import heroPhoto from "../../assets/hero.jpg";
+import { site } from "../../config/site";
+---
+
+<section class="hero wrap">
+  <h1 class="u fs title" style="--fs:46px">За крок <span class="sr-only">до мрії</span></h1>
+
+  <div class="photo">
+    <Image
+      class="arch"
+      src={heroPhoto}
+      alt="Кристина Кириленко"
+      widths={[320, 640, 900]}
+      sizes="(min-width: 1100px) 440px, 280px"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <span class="pill online">Онлайн</span>
+    <div class="i accent" aria-hidden="true">до мрії</div>
+  </div>
+
+  <div class="body">
+    <p class="i subtitle">Авторська програма<span>Кристини Кириленко</span></p>
+    <p class="t">
+      Індивідуальний супровід для жінки, яка багато досягла, але загубила в цьому себе. Щоб почути, чого хочеш саме
+      ти, перестати відкладати своє життя — і зробити перший справжній крок.
+    </p>
+    <div class="stats">
+      <div class="stat bg-sand"><div class="label">Формат</div><div class="value">5 сесій</div></div>
+      <div class="stat bg-green"><div class="label">Тривалість</div><div class="value">5-6 тижнів</div></div>
+    </div>
+    <Button href={site.links.apply} label="Хочу на супровід" />
+    <a class="outline" href={site.links.consult}>Безкоштовна консультація · 30 хв</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    gap: 20px;
+    padding-top: 6px;
+    padding-bottom: 40px;
+  }
+
+  .title {
+    color: var(--green);
+  }
+
+  .photo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .photo :global(img) {
+    width: 280px;
+    height: 360px;
+    object-position: 50% 28%;
+  }
+
+  .online {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    background: var(--cream);
+    color: var(--green);
+  }
+
+  .accent {
+    position: absolute;
+    right: 0;
+    bottom: -18px;
+    font-size: 64px;
+    color: var(--green);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .subtitle {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .subtitle span {
+    display: block;
+    padding-left: 2.2em;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 440px;
+  }
+
+  .stat {
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+
+  .label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+  }
+
+  .outline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    max-width: 440px;
+    border: 1.5px solid var(--green);
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .outline:hover {
+    background: var(--green);
+    color: var(--cream);
+  }
+
+  @media (min-width: 768px) {
+    .photo :global(img) {
+      width: 340px;
+      height: 440px;
+    }
+
+    .accent {
+      right: 8%;
+      font-size: 80px;
+    }
+
+    .body .t {
+      font-size: 18px;
+      max-width: 560px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) 460px;
+      grid-template-areas:
+        "title photo"
+        "body photo";
+      column-gap: 72px;
+      row-gap: 28px;
+      align-items: start;
+      padding-top: 48px;
+      padding-bottom: 96px;
+    }
+
+    .title {
+      grid-area: title;
+      font-size: 108px;
+      align-self: end;
+    }
+
+    .photo {
+      grid-area: photo;
+      margin-bottom: 0;
+    }
+
+    .photo :global(img) {
+      width: 420px;
+      height: 560px;
+    }
+
+    .accent {
+      right: -24px;
+      bottom: -28px;
+      font-size: 104px;
+    }
+
+    .body {
+      grid-area: body;
+      gap: 24px;
+    }
+
+    .subtitle {
+      font-size: 40px;
+    }
+  }
+</style>

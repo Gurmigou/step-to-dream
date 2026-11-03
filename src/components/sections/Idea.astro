@@ -1,0 +1,139 @@
+---
+import { ideaSteps } from "../../data/content";
+---
+
+<section class="sec bg-sand">
+  <div class="wrap layout">
+    <div class="intro">
+      <span class="pill">Головна ідея програми</span>
+      <h2 class="u fs" style="--fs:27px">Не лише зрозуміти, чого я хочу.</h2>
+      <div class="i fs accent" style="--fs:40px">А дозволити собі це жити.</div>
+    </div>
+
+    <ol class="steps">
+      {
+        ideaSteps.map((step, index) => (
+          <li style={`--indent:${step.indent}`}>
+            <span class="t step-num">{String(index + 1).padStart(2, "0")}</span>
+            <span class="u step-word">{step.word}</span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="text">
+      <p class="t">
+        За 5 сесій ти не просто сформулюєш бажання. Ти побачиш, що тримає тебе на місці: страх помилки, потреба в
+        схваленні, звичка бути зручною, втома, яку ти роками не помічала.
+      </p>
+      <p class="t">
+        А потім ми перетворимо це розуміння на рішення і план — щоб мрія перестала бути «колись» і стала твоїм
+        наступним кроком.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .pill {
+    color: var(--green);
+  }
+
+  .accent {
+    color: var(--green);
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    color: var(--green);
+    --step: 30px;
+  }
+
+  .steps li {
+    border-top: 1px solid var(--green);
+    padding: 8px 0 8px calc(var(--indent) * var(--step));
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .steps li:last-child {
+    border-bottom: 1px solid var(--green);
+  }
+
+  .step-num {
+    font-size: 11px;
+  }
+
+  .step-word {
+    font-size: 32px;
+    color: var(--green) !important;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 640px;
+  }
+
+  @media (min-width: 768px) {
+    .steps {
+      --step: 60px;
+    }
+
+    .step-word {
+      font-size: 44px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .layout {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      grid-template-areas:
+        "intro steps"
+        "text steps";
+      column-gap: 80px;
+      row-gap: 32px;
+      align-items: start;
+    }
+
+    .intro {
+      grid-area: intro;
+    }
+
+    .steps {
+      grid-area: steps;
+      margin: 0;
+      --step: 70px;
+    }
+
+    .steps li {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .step-word {
+      font-size: 52px;
+    }
+
+    .text {
+      grid-area: text;
+    }
+  }
+</style>

@@ -1,0 +1,192 @@
+---
+import { site } from "../../config/site";
+import { navLinks } from "../../data/content";
+---
+
+<header class="header" data-header>
+  <div class="wrap bar">
+    <a class="handle" href={site.links.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a>
+    <nav class="nav-desktop" aria-label="Основна навігація">
+      {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="nav-cta" href={site.links.consult}>Консультація</a>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu" data-burger>
+      <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
+        <path class="l1" d="M0 1h20"></path>
+        <path class="l2" d="M0 7h20"></path>
+        <path class="l3" d="M0 13h20"></path>
+      </svg>
+    </button>
+  </div>
+  <nav id="mobile-menu" class="menu" aria-label="Мобільна навігація" data-menu hidden>
+    <div class="wrap menu-inner">
+      {navLinks.map((link) => <a class="u" href={link.href}>{link.label}</a>)}
+      <a class="menu-consult" href={site.links.consult}>Безкоштовна консультація · 30 хв</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const burger = document.querySelector<HTMLButtonElement>("[data-burger]");
+  const menu = document.querySelector<HTMLElement>("[data-menu]");
+
+  const setOpen = (open: boolean) => {
+    burger?.setAttribute("aria-expanded", String(open));
+    header?.classList.toggle("is-open", open);
+    if (menu) menu.hidden = !open;
+  };
+
+  burger?.addEventListener("click", () => setOpen(burger.getAttribute("aria-expanded") !== "true"));
+  menu?.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).closest("a")) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+
+  const onScroll = () => header?.classList.toggle("is-scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--cream);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .header.is-scrolled,
+  .header.is-open {
+    box-shadow: 0 1px 0 rgba(40, 68, 63, 0.12);
+  }
+
+  .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    min-height: 68px;
+  }
+
+  .handle {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .burger {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: none;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .burger path {
+    stroke: var(--cream);
+    stroke-width: 1.6;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform-origin: center;
+  }
+
+  .is-open .burger .l1 {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .is-open .burger .l2 {
+    opacity: 0;
+  }
+  .is-open .burger .l3 {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .menu {
+    position: absolute;
+    inset: 100% 0 auto;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(40, 68, 63, 0.15);
+    box-shadow: 0 16px 30px rgba(27, 48, 44, 0.1);
+  }
+
+  .menu-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 12px;
+    padding-bottom: 28px;
+  }
+
+  .menu-inner .u {
+    font-size: 28px;
+    color: var(--green);
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(40, 68, 63, 0.2);
+  }
+
+  .menu-consult {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    border: 1.5px solid var(--green);
+    border-radius: 999px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .nav-desktop,
+  .nav-cta {
+    display: none;
+  }
+
+  @media (min-width: 1100px) {
+    .burger,
+    .menu {
+      display: none;
+    }
+
+    .nav-desktop {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-desktop a {
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-desktop a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--cream);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: var(--deep);
+      color: var(--cream);
+    }
+  }
+</style>

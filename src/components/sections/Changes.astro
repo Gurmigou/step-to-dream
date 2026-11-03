@@ -1,0 +1,99 @@
+---
+import { changes } from "../../data/content";
+---
+
+<section class="sec bg-green">
+  <div class="wrap layout">
+    <div class="intro">
+      <h2 class="u fs" style="--fs:32px">Що зміниться</h2>
+      <div class="i fs accent" style="--fs:38px">після програми</div>
+      <p class="t">
+        Я не обіцяю, що за 5–6 тижнів усе стане ідеальним. Але в тебе з'явиться те, з чого починаються справжні зміни:
+      </p>
+    </div>
+
+    <ol class="list">
+      {
+        changes.map((change, index) => (
+          <li>
+            <span class="n">{String(index + 1).padStart(2, "0")}</span>
+            <span class:list={[change.italic ? "i italic" : "t"]}>{change.text}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  .accent {
+    color: var(--sand);
+    margin-top: -8px;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .list li {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-on-dark);
+  }
+
+  .n {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--sand);
+    width: 48px;
+    flex: none;
+  }
+
+  .italic {
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 1100px) {
+    .layout {
+      display: grid;
+      grid-template-columns: 4fr 7fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 40px;
+    }
+
+    .list li {
+      padding: 22px 0;
+    }
+
+    .list .t {
+      font-size: 18px;
+    }
+
+    .italic {
+      font-size: 24px;
+    }
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+import { faq } from "../../data/content";
+---
+
+<section id="faq" class="sec">
+  <div class="wrap narrow">
+    <h2 class="u fs heading" style="--fs:30px">Питання /<br /><span class="i fs" style="--fs:38px">відповіді</span></h2>
+    <div class="list">
+      {
+        faq.map((item, index) => (
+          <details class="item" open={index === 0}>
+            <summary>
+              <span class="t question">{item.question}</span>
+              <span class="toggle-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class:list={["t", "answer", { todo: item.answer.startsWith("[") }]}>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .narrow {
+    max-width: calc(760px + 2 * var(--gutter));
+  }
+
+  .heading {
+    color: var(--green);
+    margin-bottom: 24px;
+  }
+
+  .heading .i {
+    color: var(--ink);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .item {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    min-height: 32px;
+  }
+
+  .question {
+    font-weight: 600;
+  }
+
+  .toggle-icon {
+    color: var(--green);
+  }
+
+  .answer {
+    font-size: 15px;
+    color: var(--muted-2);
+    margin-top: 10px;
+  }
+
+  .answer.todo {
+    color: #9a6b2e;
+  }
+
+  @media (min-width: 1100px) {
+    .item {
+      padding: 22px 28px;
+    }
+
+    .question {
+      font-size: 18px;
+    }
+
+    .answer {
+      font-size: 16px;
+    }
+  }
+</style>

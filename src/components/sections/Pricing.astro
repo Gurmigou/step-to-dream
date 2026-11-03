@@ -1,0 +1,272 @@
+---
+import Button from "../ui/Button.astro";
+import { programIncludes } from "../../data/content";
+import { site } from "../../config/site";
+
+const { program, singleSession, openSpots } = site.pricing;
+---
+
+<section id="price" class="sec pricing">
+  <div class="wrap stack">
+    <div class="head">
+      <h2 class="u fs heading" style="--fs:36px">Вартість</h2>
+      <div class="sub-row">
+        <span class="i fs" style="--fs:38px">участі</span>
+        <span class="tags">
+          <span class="pill bg-sand tag">онлайн</span>
+          <span class="pill bg-deep tag">1:1</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="plans">
+      <article class="plan main">
+        <span class="pill badge">Найкраща цінність</span>
+        <h3 class="u main-title">За крок<br /><span class="i">до мрії</span></h3>
+        <ul class="t includes">
+          {programIncludes.map((item) => <li>✦&nbsp;&nbsp;{item}</li>)}
+        </ul>
+        <div class="price-row">
+          <s class="t old">{program.oldPrice}</s>
+          <span class="price-big">{program.price}</span>
+        </div>
+        <Button href={site.links.apply} label="Хочу на супровід" variant="gold" />
+      </article>
+
+      <article class="plan bg-white">
+        <h3 class="u plan-title">Разова сесія</h3>
+        <p class="t">Щоб розібрати одне питання або спершу спробувати формат.</p>
+        <p class="t meta">1 сесія · 60 хв · онлайн</p>
+        <div class="plan-foot">
+          <span class="price">{singleSession.price}</span>
+          <a class="link-btn outline" href={site.links.singleSession}>Записатись</a>
+        </div>
+      </article>
+
+      <article id="consult" class="plan bg-sand">
+        <span class="pill bg-deep tag">Почни звідси</span>
+        <h3 class="u plan-title">Безкоштовна консультація</h3>
+        <p class="t">
+          Познайомимось, визначимо твій запит і разом вирішимо, який формат тобі підійде — програма чи разова сесія.
+        </p>
+        <p class="t meta">30 хв · онлайн · Zoom</p>
+        <div class="plan-foot">
+          <span class="price small">Безкоштовно</span>
+          <a class="link-btn solid" href={site.links.consult}>Записатись</a>
+        </div>
+      </article>
+    </div>
+
+    <p class="t spots">
+      Я беру обмежену кількість клієнток на місяць, щоб працювати глибоко. Зараз відкрито {openSpots} місць.
+    </p>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    padding-top: 20px;
+  }
+
+  .heading {
+    color: var(--green);
+  }
+
+  .sub-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: -6px;
+  }
+
+  .tags {
+    display: flex;
+    gap: 6px;
+  }
+
+  .tag {
+    border-color: transparent;
+  }
+
+  .plans {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .plan {
+    border-radius: 24px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .main {
+    background: var(--green);
+    color: var(--cream);
+    padding: 26px 22px;
+    gap: 16px;
+    border: 2px solid var(--gold);
+  }
+
+  .badge {
+    align-self: center;
+    background: var(--gold);
+    color: var(--deep);
+    border-color: var(--gold);
+  }
+
+  .main-title {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .main-title .i {
+    font-size: 40px;
+    color: var(--sand);
+  }
+
+  .includes {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .price-row {
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .old {
+    font-size: 18px;
+    opacity: 0.7;
+    margin-right: 10px;
+  }
+
+  .price-big {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 48px;
+  }
+
+  .main :global(.btn) {
+    max-width: none;
+  }
+
+  .plan-title {
+    font-size: 22px;
+  }
+
+  .meta {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .plan-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .price {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--green);
+  }
+
+  .price.small {
+    font-size: 24px;
+  }
+
+  .link-btn {
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-weight: 500;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .outline {
+    border: 1.5px solid var(--green);
+  }
+
+  .outline:hover {
+    background: var(--green);
+    color: var(--cream);
+  }
+
+  .solid {
+    background: var(--green);
+    color: var(--cream);
+  }
+
+  .solid:hover {
+    background: var(--deep);
+    color: var(--cream);
+  }
+
+  .spots {
+    font-size: 14px;
+    text-align: center;
+    color: var(--muted-2);
+  }
+
+  @media (min-width: 768px) {
+    .plans {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .main {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .pricing {
+      padding-top: var(--section-y);
+    }
+
+    .head {
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .sub-row {
+      flex: 1;
+      margin-top: 0;
+    }
+
+    .plans {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .main {
+      grid-column: auto;
+      padding: 36px 30px;
+      transform: translateY(-12px);
+      box-shadow: 0 24px 50px rgba(27, 48, 44, 0.22);
+    }
+
+    .plan {
+      padding: 32px 28px;
+    }
+
+    .spots {
+      margin-top: 16px;
+    }
+  }
+</style>

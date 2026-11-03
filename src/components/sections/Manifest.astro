@@ -1,0 +1,87 @@
+---
+import { manifestPoints } from "../../data/content";
+---
+
+<section class="sec bg-deep">
+  <div class="wrap layout">
+    <div class="intro">
+      <span class="pill">Маніфест</span>
+      <h2 class="u fs" style="--fs:30px">Ця програма не про те, як</h2>
+      <div class="i fs accent" style="--fs:50px">встигати ще більше</div>
+    </div>
+    <div class="points">
+      {
+        manifestPoints.map((point) => (
+          <div class="point">
+            <div class="point-title">{point.title}</div>
+            <p class="t">{point.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .accent {
+    color: var(--gold);
+    line-height: 0.95;
+    margin-top: -6px;
+  }
+
+  .points {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .point {
+    border-top: 1px solid rgba(247, 244, 238, 0.35);
+    padding: 20px 0;
+  }
+
+  .point-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  @media (min-width: 1100px) {
+    .layout {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .points {
+      margin-top: 0;
+    }
+
+    .point {
+      padding: 28px 0;
+    }
+
+    .point-title {
+      font-size: 22px;
+    }
+
+    .point .t {
+      font-size: 18px;
+    }
+  }
+</style>

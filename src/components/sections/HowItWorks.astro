@@ -1,0 +1,66 @@
+---
+import { howItWorks } from "../../data/content";
+---
+
+<section class="sec">
+  <div class="wrap stack">
+    <h2 class="u fs heading" style="--fs:32px">Як проходить</h2>
+    <div class="i fs sub" style="--fs:36px">наша робота</div>
+
+    <div class="cards" style="--cols:4">
+      {
+        howItWorks.map((item, index) => (
+          <div class:list={["card", `bg-${item.tone}`]}>
+            <div class="card-head">
+              <span class="num">{String(index + 1).padStart(2, "0")}</span>
+              {item.tag && <span class:list={["pill", "tag", `bg-${item.tag.tone}`]}>{item.tag.label}</span>}
+            </div>
+            <h3 class="u title">{item.title}</h3>
+            <p class="t">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack {
+    gap: 14px;
+  }
+
+  .heading {
+    color: var(--green);
+  }
+
+  .sub {
+    margin-top: -8px;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    gap: 10px;
+  }
+
+  .tag {
+    border-color: transparent;
+  }
+
+  .tag.bg-sand {
+    color: var(--deep);
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  @media (min-width: 1100px) {
+    .title {
+      font-size: 22px;
+    }
+
+    .card {
+      min-height: 260px;
+    }
+  }
+</style>

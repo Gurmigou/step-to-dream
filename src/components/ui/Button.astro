@@ -1,0 +1,92 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: "green" | "gold" | "cream";
+  class?: string;
+}
+
+const { href, label, variant = "green", class: className } = Astro.props;
+---
+
+<a class:list={["btn", `btn-${variant}`, className]} href={href}>
+  <span>{label}</span>
+  <span class="arr" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20">
+      <path d="M3 10h13M11 5l5 5-5 5" stroke-width="1.6" fill="none"></path>
+    </svg>
+  </span>
+</a>
+
+<style>
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 999px;
+    padding: 10px 10px 10px 26px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+    min-height: 44px;
+    width: 100%;
+    max-width: 440px;
+    transition: background-color 0.2s ease;
+  }
+
+  .arr {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    transition: transform 0.2s ease;
+  }
+
+  .btn:hover .arr {
+    transform: translateX(3px);
+  }
+
+  .btn-green {
+    background: var(--green);
+    color: var(--cream);
+  }
+  .btn-green:hover {
+    background: var(--deep);
+    color: var(--cream);
+  }
+  .btn-green .arr {
+    background: var(--gold);
+    stroke: var(--deep);
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--deep);
+  }
+  .btn-gold:hover {
+    background: #c4ab86;
+    color: var(--deep);
+  }
+  .btn-gold .arr {
+    background: var(--deep);
+    stroke: var(--cream);
+  }
+
+  .btn-cream {
+    background: var(--cream);
+    color: var(--deep);
+  }
+  .btn-cream:hover {
+    background: var(--sand);
+    color: var(--deep);
+  }
+  .btn-cream .arr {
+    background: var(--gold);
+    stroke: var(--deep);
+  }
+</style>

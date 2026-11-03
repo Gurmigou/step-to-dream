@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import laptopPhoto from "../../assets/laptop.jpg";
+import { forWhom } from "../../data/content";
+---
+
+<section class="sec">
+  <div class="wrap stack">
+    <div class="top">
+      <div>
+        <h2 class="u fs heading" style="--fs:36px">Для кого</h2>
+        <div class="i fs" style="--fs:32px">ця програма</div>
+      </div>
+      <Image
+        src={laptopPhoto}
+        alt="Кристина працює за ноутбуком на дивані"
+        widths={[400, 850]}
+        sizes="(min-width: 1100px) 600px, 100vw"
+      />
+    </div>
+
+    <div class="cards">
+      {
+        forWhom.map((item, index) => (
+          <div class:list={["card", `bg-${item.tone}`]}>
+            <div class="card-head">
+              <span class="num">{String(index + 1).padStart(2, "0")}</span>
+              <span aria-hidden="true">→</span>
+            </div>
+            <h3 class="u title">{item.title}</h3>
+            <p class="t">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack {
+    gap: 14px;
+  }
+
+  .heading {
+    color: var(--green);
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .top :global(img) {
+    width: 100%;
+    height: 300px;
+    border-radius: 22px;
+    object-fit: cover;
+    object-position: 40% 40%;
+    margin: 6px 0 14px;
+  }
+
+  .card {
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  @media (min-width: 1100px) {
+    .top {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      align-items: end;
+      gap: 56px;
+      margin-bottom: 24px;
+    }
+
+    .top :global(img) {
+      height: 380px;
+      margin: 0;
+    }
+  }
+</style>

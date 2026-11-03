@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import Button from "../ui/Button.astro";
+import deskPhoto from "../../assets/desk.jpg";
+import { recogniseAfter, recogniseBefore } from "../../data/content";
+import { site } from "../../config/site";
+
+const pad = (index: number) => String(index).padStart(2, "0");
+---
+
+<section class="sec">
+  <div class="wrap stack">
+    <h2 class="u fs heading" style="--fs:34px">Можливо,<br />ти <span class="i fs" style="--fs:42px">впізнаєш себе</span></h2>
+    <p class="t lead">
+      Зовні в тебе все вийшло: кар'єра, досвід, стабільність. Тебе вважають сильною. Але всередині дедалі частіше звучить
+      тихе «так більше не хочу».
+    </p>
+
+    <div class="cards grid">
+      {
+        recogniseBefore.map((item, index) => (
+          <div class:list={["card", `bg-${item.tone}`]}>
+            <span class="num">{pad(index + 1)}</span>
+            <p class="t item">{item.text}</p>
+          </div>
+        ))
+      }
+      <div class="photo">
+        <Image src={deskPhoto} alt="Кристина за столом біля вікна" widths={[400, 800]} sizes="(min-width: 768px) 50vw, 100vw" />
+        <span class="i tag">знайомо?</span>
+      </div>
+      {
+        recogniseAfter.map((item, index) => (
+          <div class:list={["card", `bg-${item.tone}`]}>
+            <span class="num">{pad(recogniseBefore.length + index + 1)}</span>
+            <p class="t item">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <Button href={site.links.apply} label="Хочу на супровід" class="cta" />
+  </div>
+</section>
+
+<style>
+  .heading {
+    color: var(--green);
+  }
+
+  .heading .i {
+    color: var(--ink);
+  }
+
+  .lead {
+    margin-bottom: 12px;
+    max-width: 640px;
+  }
+
+  .grid {
+    grid-auto-flow: dense;
+  }
+
+  .item {
+    font-size: 18px;
+  }
+
+  .photo {
+    position: relative;
+  }
+
+  .photo :global(img) {
+    width: 100%;
+    height: 340px;
+    border-radius: 22px;
+    object-fit: cover;
+    object-position: 45% 40%;
+  }
+
+  .tag {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    background: var(--cream);
+    border-radius: 999px;
+    padding: 6px 22px;
+    font-size: 26px;
+  }
+
+  .stack :global(.cta) {
+    margin-top: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .photo {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .photo {
+      grid-column: auto;
+    }
+
+    .photo :global(img) {
+      height: 100%;
+      min-height: 220px;
+    }
+
+    .card {
+      min-height: 220px;
+      justify-content: space-between;
+    }
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+import { methodPillars } from "../../data/content";
+---
+
+<section class="sec">
+  <div class="wrap layout">
+    <div class="intro">
+      <h2 class="u fs heading" style="--fs:34px">На чому</h2>
+      <div class="i fs sub" style="--fs:36px">тримається метод</div>
+      <p class="t">
+        Програма поєднує коучинг європейського стандарту з моїм 15-річним досвідом кар'єрного розвитку людей у
+        міжнародній компанії.
+      </p>
+    </div>
+
+    <ul class="pillars">
+      {methodPillars.map((pillar) => <li class:list={["t", `bg-${pillar.tone}`]}>✦&nbsp;&nbsp;{pillar.text}</li>)}
+    </ul>
+
+    <p class="i closing">
+      Тобі не потрібно розбиратися в психології. Достатньо бути чесною з собою — решту ми зробимо разом.
+    </p>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .heading {
+    color: var(--green);
+  }
+
+  .sub {
+    margin-top: -8px;
+  }
+
+  .intro .t {
+    margin: 6px 0 12px;
+  }
+
+  .pillars {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pillars li {
+    border-radius: 999px;
+    padding: 14px 22px;
+  }
+
+  .closing {
+    font-size: 22px;
+    line-height: 1.25;
+    margin-top: 16px;
+  }
+
+  @media (min-width: 1100px) {
+    .layout {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      grid-template-areas:
+        "intro pillars"
+        "closing pillars";
+      column-gap: 80px;
+      align-items: start;
+    }
+
+    .intro {
+      grid-area: intro;
+    }
+
+    .pillars {
+      grid-area: pillars;
+    }
+
+    .pillars li {
+      font-size: 18px;
+      padding: 18px 28px;
+    }
+
+    .closing {
+      grid-area: closing;
+      font-size: 28px;
+    }
+  }
+</style>

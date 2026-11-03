@@ -1,0 +1,50 @@
+---
+import { marqueePhrases } from "../../data/content";
+
+const line = marqueePhrases.map((phrase) => `${phrase.toUpperCase()} ✦ `).join("");
+---
+
+<div class="marquee" role="presentation">
+  <div class="track" aria-hidden="true">
+    <span>{line}</span><span>{line}</span>
+  </div>
+</div>
+
+<style>
+  .marquee {
+    background: var(--green);
+    color: var(--cream);
+    padding: 14px 0;
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+    white-space: pre;
+    animation: slide 28s linear infinite;
+  }
+
+  @keyframes slide {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .marquee {
+      font-size: 16px;
+      padding: 18px 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track {
+      animation: none;
+    }
+  }
+</style>

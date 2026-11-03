@@ -1,0 +1,59 @@
+---
+import { whyReal } from "../../data/content";
+---
+
+<section class="sec bg-sand">
+  <div class="wrap stack">
+    <div>
+      <h2 class="u fs" style="--fs:28px">Чому цю програму</h2>
+      <div class="i fs accent" style="--fs:34px">реально пройти до кінця</div>
+    </div>
+    <p class="t lead">
+      Тобі не доведеться перебудовувати все життя за 5–6 тижнів. Кожен тиждень має один фокус: спершу зрозуміти, потім
+      спробувати, і лише тоді рухатись далі.
+    </p>
+
+    <div class="hscroll" style="--cols:4">
+      {
+        whyReal.map((item, index) => (
+          <div class:list={["card", "tile", `bg-${item.tone}`]}>
+            <span class="u big">{String(index + 1).padStart(2, "0")}</span>
+            <p class="t">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="swipe-hint"><span class="i">Гортай</span><span aria-hidden="true">→</span></div>
+  </div>
+</section>
+
+<style>
+  .accent {
+    color: var(--green);
+  }
+
+  .lead {
+    max-width: 640px;
+  }
+
+  .tile {
+    width: 210px;
+    min-width: 210px;
+    height: 260px;
+    justify-content: space-between;
+  }
+
+  .tile .t {
+    font-size: 18px;
+  }
+
+  .big {
+    font-size: 48px;
+    color: inherit !important;
+  }
+
+  .bg-cream .big,
+  .bg-white .big {
+    color: var(--deep) !important;
+  }
+</style>
