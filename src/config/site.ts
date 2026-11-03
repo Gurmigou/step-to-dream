@@ -9,7 +9,7 @@ export const site = {
     telegram: "#final",
     apply: "#price",
     singleSession: "#price",
-    consult: "#consult",
+    consult: "#price",
     diagnostic: "#diagnostic",
     offer: "#final",
     privacy: "#final",
