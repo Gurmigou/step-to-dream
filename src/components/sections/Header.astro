@@ -9,7 +9,7 @@ import { navLinks } from "../../data/content";
     <nav class="nav-desktop" aria-label="Основна навігація">
       {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
-    <a class="nav-cta" href={site.links.consult}>Консультація</a>
+    <a class="nav-cta" href={site.links.consult}>Безкоштовна консультація</a>
     <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu" data-burger>
       <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
         <path class="l1" d="M0 1h20"></path>
@@ -176,11 +176,13 @@ import { navLinks } from "../../data/content";
       display: inline-flex;
       align-items: center;
       min-height: 44px;
-      padding: 0 22px;
+      padding: 0 20px;
       border-radius: 999px;
       background: var(--green);
       color: var(--cream);
+      font-size: 13px;
       font-weight: 500;
+      white-space: nowrap;
       text-decoration: none;
     }
 
